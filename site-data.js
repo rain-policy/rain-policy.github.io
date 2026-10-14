@@ -21,10 +21,10 @@ window.RAIN = {
     {id:5, name:"Nanyang Technological University"}
   ],
   resources: [
-    {name:"Paper", symbol:"↗", url:null, detail:"Manuscript", status:"Coming soon"},
-    {name:"arXiv", symbol:"↗", url:null, detail:"Preprint", status:"Coming soon"},
-    {name:"Code", symbol:"⌘", url:null, detail:"Implementation", status:"Public release pending"},
-    {name:"Models", symbol:"↓", url:null, detail:"Pretrained checkpoints", status:"Public release pending"}
+    {name:"Paper", symbol:"↗", url:"assets/paper/RAIN.pdf", detail:"Manuscript PDF · 9 pages", status:"Available"},
+    {name:"arXiv", symbol:"↗", url:null, detail:"Preprint", status:"Awaiting arXiv announcement"},
+    {name:"Code", symbol:"⌘", url:"https://github.com/rain-policy/RAIN", detail:"ManiSkill implementation · MIT", status:"Available"},
+    {name:"Models", symbol:"↓", url:"https://github.com/rain-policy/RAIN/releases/tag/v0.1.0", detail:"Eight-task pretrained checkpoints · MIT", status:"Available"}
   ],
   robotTasks: [
     {id:"cube_stacking", name:"Cube Stacking", description:"Stack the cubes to complete the manipulation task.", results:[65,70,85]},

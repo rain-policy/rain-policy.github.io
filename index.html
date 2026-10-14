@@ -15,7 +15,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=blue">
   <link rel="preload" href="assets/fonts/Inter-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
-  <script src="site-data.js" defer></script>
+  <script src="site-data.js?v=public-release-20261014" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -100,7 +100,7 @@
 
     <section id="overview-video" class="section-wrap ruled-section" aria-labelledby="video-heading"><div class="section-heading"><h2 id="video-heading">Video Overview</h2><p class="section-lead">Method, manipulation tasks and refinement allocation.</p></div><video class="overview-player" controls playsinline preload="none" data-src="assets/videos/rain-overview.mp4" poster="assets/posters/rain-overview.webp" aria-label="RAIN narrated overview video"></video><p class="small-note">English narration · no background music · playback speeds are indicated within the video.</p></section>
 
-    <section id="resources" class="section-wrap ruled-section resources-section" aria-labelledby="resources-heading"><div class="section-heading"><h2 id="resources-heading">Research Resources</h2><p class="section-lead">Paper, implementation and pretrained models.</p></div><div id="resource-list" class="resource-list"></div><p class="small-note">Public resource links and the <a href="#citation">citation</a> will be added with the research release.</p></section>
+    <section id="resources" class="section-wrap ruled-section resources-section" aria-labelledby="resources-heading"><div class="section-heading"><h2 id="resources-heading">Research Resources</h2><p class="section-lead">Paper, implementation and pretrained models.</p></div><div id="resource-list" class="resource-list"></div><p class="small-note">Code and pretrained models are available under MIT. The arXiv link and <a href="#citation">BibTeX</a> will be added after announcement.</p></section>
 
     <section id="faq" class="section-wrap ruled-section faq-section" aria-labelledby="faq-heading"><div class="section-heading"><h2 id="faq-heading">Questions &amp; Answers</h2></div>
       <details class="detail"><summary>How does RAIN choose the number of refinement steps?</summary><div><p>RAIN predicts the action error and uncertainty for each possible number of steps. It combines these estimates with compute cost and recent refinement choices, then runs the selected number of steps.</p></div></details>
@@ -110,8 +110,8 @@
     <section id="citation" class="section-wrap ruled-section citation-section" aria-labelledby="citation-heading">
       <div class="section-heading"><h2 id="citation-heading">Citation</h2></div>
       <div class="citation-reference"><p id="citation-authors"></p><p><cite id="citation-title"></cite></p></div>
-      <p class="small-note citation-release-note">The official citation will be added when the paper is publicly released.</p>
-      <div class="bibtex-panel"><div class="bibtex-heading"><span>BibTeX</span><span id="citation-status">Coming soon</span></div><pre><code id="citation-bibtex">BibTeX will be added with the public paper release.</code></pre></div>
+      <p class="small-note citation-release-note">The arXiv citation will be added after the preprint is announced.</p>
+      <div class="bibtex-panel"><div class="bibtex-heading"><span>BibTeX</span><span id="citation-status">Coming soon</span></div><pre><code id="citation-bibtex">BibTeX will be added after the arXiv announcement.</code></pre></div>
     </section>
   </main>
   <footer class="site-footer section-wrap"><a class="wordmark" href="#overview"><img src="assets/rain-mark.svg?v=blue" alt="" width="27" height="27"><span>RAIN</span></a><p>Refine Actions If Needed<br><span>Adaptive Action Chunk Refinement for Robot Manipulation</span></p><a href="#overview">Back to top ↑</a></footer>
