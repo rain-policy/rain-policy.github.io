@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RAIN learns how many refinement steps an action needs, improving robot manipulation while reducing policy computation.">
+  <meta name="theme-color" content="#faf7f0">
+  <meta property="og:title" content="RAIN — Refine Actions If Needed">
+  <meta property="og:description" content="Adaptive Action Chunk Refinement for Robot Manipulation">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rain-policy.github.io/">
+  <meta property="og:image" content="https://rain-policy.github.io/assets/posters/cube_stacking.webp">
+  <link rel="canonical" href="https://rain-policy.github.io/">
+  <title>RAIN · Refine Actions If Needed</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preload" href="assets/fonts/Inter-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <script src="site-data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#overview">Skip to content</a>
+  <aside class="site-header" aria-label="On this page">
+    <p class="toc-label">On this page</p>
+    <nav aria-label="Page sections">
+      <a href="#overview">Overview</a><a href="#robot">Real robot</a><a href="#simulation">Simulation</a><a href="#method">Method</a><a href="#routing">Refinement examples</a><a href="#controls">Ablations</a><a href="#overview-video">Video overview</a><a href="#resources">Resources</a><a href="#faq">FAQ</a><a href="#citation">Citation</a>
+    </nav>
+  </aside>
+  <main>
+    <section id="overview" class="hero section-wrap">
+      <div class="project-brand" aria-label="RAIN"><img src="assets/rain-mark.svg" alt="" width="40" height="40"><span>RAIN</span></div>
+      <h1>Refine Actions <span class="title-tail">If Needed</span></h1>
+      <p class="paper-subtitle">Adaptive Action Chunk Refinement<br>for Robot Manipulation</p>
+      <div id="authors" class="authors" hidden></div>
+      <div id="affiliations" class="affiliations" aria-label="Author affiliations" hidden></div>
+      <p id="author-notes" class="author-notes" hidden></p>
+      <div class="resource-buttons" id="hero-resources" aria-label="Research resources"></div>
+    </section>
+    <section id="abstract" class="section-wrap abstract-section" aria-label="Research overview">
+      <p class="hero-description">Robot manipulation does not require the same amount of action refinement at every decision. Direct policies produce executable actions quickly, while iterative generative policies spend more computation to correct them. A fixed refinement budget can provide too little correction in one state and more than is needed in another.</p>
+      <div class="teaser-grid" id="teaser-grid" aria-label="Selected real-robot demonstrations"></div>
+      <div class="media-caption"><span>Selected real-robot rollouts · 3× source playback · silent loops</span><button id="teaser-toggle" class="text-button" type="button" aria-pressed="false">Pause previews <span aria-hidden="true">Ⅱ</span></button></div>
+      <p class="overview-description">We propose <strong>Refine Actions If Needed (RAIN)</strong>, which learns <em>whether</em> an action needs refinement and <em>how many steps</em> to use. ACT first proposes an action chunk. RAIN predicts how accurate the action would be after different numbers of refinement steps, then weighs the improvement against computation cost. It runs only the chosen steps; choosing zero executes ACT’s proposal directly.</p>
+      <p class="overview-description">RAIN achieves <strong>66.6% success across eight simulation tasks</strong> and <strong>72.5% across four real-robot tasks</strong>. Compared with three fixed refinements, it uses <strong>26.6% fewer flow-matching evaluations</strong> and <strong>15.7% less policy compute</strong>, with a similar success rate.</p>
+    </section>
+
+    <section class="section-wrap introduction" aria-labelledby="idea-heading">
+      <div class="section-heading"><h2 id="idea-heading">From Prediction to Selective Refinement</h2></div>
+      <div class="prose"><p>RAIN starts with an action that the robot can already execute. Before running the refinement model, it uses the observation, proposed action and prediction uncertainty to choose how much correction to apply.</p></div>
+      <figure class="paper-figure wide-figure"><button class="figure-button" data-image="assets/figures/paradigms.svg" type="button" aria-label="Enlarge comparison of policy paradigms"><img src="assets/figures/paradigms.svg" alt="Direct ACT, iterative diffusion/flow generation, fixed-budget refinement and RAIN dynamic refinement compared" loading="lazy"></button><figcaption>From direct prediction to optional correction. RAIN preserves the executable proposal and invokes flow matching only when selected.</figcaption></figure>
+    </section>
+
+
+
+    <section id="robot" class="section-wrap ruled-section" aria-labelledby="robot-heading">
+      <div class="section-heading"><p class="eyebrow">Robot manipulation</p><h2 id="robot-heading">Real-Robot Results</h2><p class="section-lead">Across four real-robot tasks, RAIN achieves 72.5% success, compared with 55.0% for ACT and 61.25% for DP. Experiments use an ARX arm with two RGB views and proprioception.</p></div>
+      <div class="robot-summary">
+        <div class="robot-metric"><p class="metric-label">Overall success rate</p><div class="method-metrics"><div><span>ACT</span><strong>55.0%</strong></div><div><span>DP</span><strong>61.25%</strong></div><div class="ours"><span>RAIN</span><strong>72.5%</strong></div></div></div>
+        <div class="robot-metric"><p class="metric-label">Completion time · successful trials</p><div class="method-metrics"><div><span>ACT</span><strong>17.17<span> s</span></strong></div><div><span>DP</span><strong>21.49<span> s</span></strong></div><div class="ours"><span>RAIN</span><strong>17.57<span> s</span></strong></div></div></div>
+      </div>
+      <p class="protocol">50 demonstrations and 20 evaluation trials per method per task.</p>
+      <div class="task-tabs" id="robot-tabs" role="tablist" aria-label="Real robot tasks"></div>
+      <div class="robot-panel" id="robot-panel" role="tabpanel">
+        <div class="video-frame"><video id="robot-video" controls playsinline preload="none" aria-label="Selected RAIN real-robot rollout"></video><span class="video-label">RAIN · selected successful trial</span></div>
+        <div class="task-info"><p class="eyebrow">Success rate</p><h3 id="robot-task-title"></h3><p id="robot-task-description"></p><div id="robot-bars" class="result-bars"></div></div>
+      </div>
+      <details class="detail"><summary>View complete real-robot results</summary><div><div class="table-scroll" tabindex="0"><table id="robot-table"><caption>Success rate (%) by task and average completion time (s).</caption><thead><tr><th scope="col">Method</th><th scope="col">Stack</th><th scope="col">Ring</th><th scope="col">Sort</th><th scope="col">Pour</th><th scope="col">Overall</th><th scope="col">Time (s)</th></tr></thead><tbody></tbody></table></div><p class="small-note">Completion time includes observation processing, RTX 4080 inference and physical execution. We average successful trials within each task, then average across the four tasks.</p></div></details>
+    </section>
+
+    <section id="simulation" class="section-wrap ruled-section" aria-labelledby="simulation-heading">
+      <div class="section-heading"><p class="eyebrow">ManiSkill evaluation</p><h2 id="simulation-heading">Simulation Results</h2><p class="section-lead">We evaluate eight ManiSkill tasks with 100 trials per task. RAIN achieves a 66.6% average success rate with 0.322 ms of policy compute per executed action.</p></div>
+      <div class="simulation-summary"><div class="chart-panel"><figure><button class="figure-button" data-image="assets/figures/success-latency.svg" type="button" aria-label="Enlarge success versus policy latency"><img src="assets/figures/success-latency.svg" alt="Success versus policy latency across ACT, A2A, DP, FM and RAIN; RAIN achieves 66.6 percent at 0.322 milliseconds per executed action" loading="lazy"></button><figcaption>Success rate versus policy compute time.</figcaption></figure></div><div class="simulation-facts"><p class="big-number">0.322 <span>ms / action</span></p><p>Average policy compute per executed action.</p><hr><p><strong>5.71× lower policy latency</strong> than DP-5, with 66.6% versus 67.9% success.</p><p class="small-note">NVIDIA A800 · FP32 · CUDA Graph.</p></div></div>
+      <div class="sim-grid" id="sim-grid" aria-label="Eight simulation tasks"></div>
+      <details class="detail"><summary>View all simulation results and settings</summary><div><p class="small-note">Each task has 500 demonstrations. RAIN uses 400 for training, 50 for calibration and 50 held out; baselines train on all 500. All methods use the same 100 evaluation seeds per task. Timing measures policy computation on an A800, excluding environment execution and input transfer, and averages it over eight executed actions.</p><div class="table-scroll" tabindex="0"><table id="simulation-table"><caption>Success rate (%) and policy compute time (ms/action), 800 trials per method.</caption><thead><tr><th scope="col">Method</th><th scope="col">Pick</th><th scope="col">Push</th><th scope="col">Stack</th><th scope="col">Peg</th><th scope="col">Plug</th><th scope="col">Pull</th><th scope="col">PushT</th><th scope="col">Pyramid</th><th scope="col">Overall</th><th scope="col">ms/action</th></tr></thead><tbody></tbody></table></div><p class="small-note">Method suffixes give the number of model evaluations. ProbeFlow uses a frozen FM model, Gaussian initialization, probe time 0.5, threshold 0.008 and 2/4/6/8/10-step schedules; its timing includes both probes.</p></div></details>
+    </section>
+
+    <section id="method" class="section-wrap ruled-section" aria-labelledby="method-heading">
+      <div class="section-heading"><h2 id="method-heading">Method</h2><p class="section-lead">ACT proposes an action chunk. RAIN estimates how much refinement will improve it, chooses the number of steps, and runs those steps before executing the action.</p></div>
+      <ol class="method-steps">
+        <li><span class="step-number">01</span><h3>Propose an action</h3><p>ACT predicts an action chunk from the observation history, together with an estimate of its uncertainty.</p></li>
+        <li><span class="step-number">02</span><h3>Choose how much to refine</h3><p>Using the observation and proposal, RAIN predicts the action error after different numbers of refinement steps and weighs it against their compute cost.</p></li>
+        <li><span class="step-number">03</span><h3>Refine and execute</h3><p>Run the chosen number of refinement steps and execute the action chunk. With zero steps, use ACT’s proposal directly.</p></li>
+      </ol>
+      <figure class="paper-figure"><button class="figure-button" data-image="assets/figures/method.svg" type="button" aria-label="Enlarge RAIN method overview"><img src="assets/figures/method.svg" alt="RAIN learns action-error prediction from demonstrations, calibrates its choices and selects how many refinement steps to run" loading="lazy"></button><figcaption>Training compares actions at different refinement levels with expert demonstrations. At deployment, RAIN predicts these errors and runs the chosen number of steps.</figcaption></figure>
+      <details class="detail"><summary>How is the refinement choice learned?</summary><div><p>We jointly train ACT and the refinement model, then freeze them. Actions produced with different numbers of refinement steps are compared with expert demonstrations. A group of predictors learns the resulting action errors and uncertainty. Calibration sets the balance between accuracy, uncertainty and computation, while recent refinement choices help keep decisions consistent over time.</p><p>Simulation uses a 400/50/50 training, calibration and held-out split per task. On the real robot, fitting and calibration use the same 50 demonstrations per task.</p></div></details>
+    </section>
+
+    <section id="routing" class="section-wrap ruled-section" aria-labelledby="routing-heading">
+      <div class="section-heading"><h2 id="routing-heading">Refinement During Manipulation</h2><p class="section-lead">Watch how RAIN changes the number of refinement steps as the robot completes each task. Switch tasks to compare different manipulation examples.</p></div>
+      <div class="task-tabs route-tabs" id="route-tabs" role="tablist" aria-label="Refinement demonstration tasks"></div>
+      <div class="routing-layout" id="route-panel" role="tabpanel"><div class="route-video-wrap"><video id="route-video" controls playsinline preload="none" aria-label="RAIN refinement demonstration"></video></div><div class="route-explanation"><p class="eyebrow" id="route-task-name"></p><h3>Refinement steps</h3><p class="route-value"><span id="route-n">—</span><span id="route-step-label">steps for this<br>action chunk</span></p><div class="route-options" aria-label="Refinement choices"><span data-level="0">0 · Direct</span><span data-level="1">1</span><span data-level="2">2</span><span data-level="3">3</span></div><p id="route-task-description"></p><p>Click a segment below to jump to that part of the video.</p><div id="route-timeline" class="route-timeline" aria-label="Refinement steps during the video"></div></div></div>
+      <figure class="paper-figure allocation-figure"><button class="figure-button" data-image="assets/figures/allocation.svg" type="button" aria-label="Enlarge task-level refinement allocation"><img src="assets/figures/allocation.svg" alt="Task-level distributions of zero, one, two and three refinement steps across eight ManiSkill tasks" loading="lazy"></button><figcaption>The number of refinement steps varies across tasks.</figcaption></figure>
+    </section>
+
+    <section id="controls" class="section-wrap ruled-section" aria-labelledby="controls-heading">
+      <div class="section-heading"><h2 id="controls-heading">Ablation Results</h2><p class="section-lead">The following controls share proposal and refiner weights, evaluation seeds, preprocessing and eight-action execution blocks.</p></div>
+      <div class="control-highlight"><p><strong>26.6%</strong><span>fewer refinement-model evaluations</span></p><p><strong>15.7%</strong><span>lower policy latency</span></p><div>Compared with always using three refinement steps, RAIN saves computation with similar success rates: <b>66.6% for RAIN and 66.4% for Fixed 3</b>.</div></div>
+      <div class="table-scroll" tabindex="0"><table id="controls-table"><caption>Matched routing variants; simulation timing follows the isolated A800 protocol.</caption><thead><tr><th scope="col">Variant</th><th scope="col">Success (%)</th><th scope="col">ms/action</th><th scope="col">FM evals/action</th></tr></thead><tbody></tbody></table></div>
+      <details class="detail"><summary>Refinement beyond flow matching</summary><div><p>A separate ACT–diffusion fixed-refinement experiment improves success from 52.9% for the unrefined proposal to 63.6% at its best evaluated fixed setting. This supports the proposal-refinement principle; the dynamic routing experiments shown here use the flow-matching refiner.</p></div></details>
+    </section>
+
+    <section id="overview-video" class="section-wrap ruled-section" aria-labelledby="video-heading"><div class="section-heading"><h2 id="video-heading">Video Overview</h2><p class="section-lead">Method, manipulation tasks and refinement allocation.</p></div><video class="overview-player" controls playsinline preload="none" data-src="assets/videos/rain-overview.mp4" poster="assets/posters/rain-overview.webp" aria-label="RAIN narrated overview video"></video><p class="small-note">English narration · no background music · playback speeds are indicated within the video.</p></section>
+
+    <section id="resources" class="section-wrap ruled-section resources-section" aria-labelledby="resources-heading"><div class="section-heading"><h2 id="resources-heading">Research Resources</h2><p class="section-lead">Paper, implementation and pretrained models.</p></div><div id="resource-list" class="resource-list"></div><p class="small-note">Public resource links and the <a href="#citation">citation</a> will be added with the research release.</p></section>
+
+    <section id="faq" class="section-wrap ruled-section faq-section" aria-labelledby="faq-heading"><div class="section-heading"><h2 id="faq-heading">Questions &amp; Answers</h2></div>
+      <details class="detail"><summary>How does RAIN choose the number of refinement steps?</summary><div><p>RAIN predicts the action error and uncertainty for each possible number of steps. It combines these estimates with compute cost and recent refinement choices, then runs the selected number of steps.</p></div></details>
+      <details class="detail"><summary>What happens when RAIN chooses zero steps?</summary><div><p>The robot executes ACT’s proposed action chunk directly.</p></div></details>
+      <details class="detail"><summary>How does the refinement amount vary across tasks?</summary><div><p>Some tasks often use direct actions or one refinement step; others use more correction. For example, PushT and StackPyramid use three steps for 99.6% and 97.4% of decisions. The task-level chart above shows the full distribution.</p></div></details>
+    </section>
+    <section id="citation" class="section-wrap ruled-section citation-section" aria-labelledby="citation-heading">
+      <div class="section-heading"><h2 id="citation-heading">Citation</h2></div>
+      <div class="citation-reference"><p id="citation-authors"></p><p><cite id="citation-title"></cite></p></div>
+      <p class="small-note citation-release-note">The official citation will be added when the paper is publicly released.</p>
+      <div class="bibtex-panel"><div class="bibtex-heading"><span>BibTeX</span><span id="citation-status">Coming soon</span></div><pre><code id="citation-bibtex">BibTeX will be added with the public paper release.</code></pre></div>
+    </section>
+  </main>
+  <footer class="site-footer section-wrap"><a class="wordmark" href="#overview"><img src="assets/rain-mark.svg" alt="" width="27" height="27"><span>RAIN</span></a><p>Refine Actions If Needed<br><span>Adaptive Action Chunk Refinement for Robot Manipulation</span></p><a href="#overview">Back to top ↑</a></footer>
+  <p class="design-credit">Layout and typography inspired by <a href="https://gated-memory-policy.github.io/" target="_blank" rel="noopener noreferrer">Gated Memory Policy</a>.</p>
+  <dialog id="figure-dialog" aria-label="Enlarged research figure"><button id="dialog-close" class="dialog-close" type="button" aria-label="Close enlarged figure">×</button><img id="dialog-image" alt=""></dialog>
+</body>
+</html>
