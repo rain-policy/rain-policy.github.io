@@ -11,15 +11,14 @@ window.RAIN = {
     {name:"Guangyan Chen", affiliations:[2]},
     {name:"Yufeng Yue", affiliations:[2], corresponding:true},
     {name:"Gen Li", affiliations:[5], corresponding:true},
-    {name:"Fangqiang Ding", affiliations:[1,6], corresponding:true}
+    {name:"Fangqiang Ding", affiliations:[1], corresponding:true}
   ],
   affiliations: [
     {id:1, name:"The Hong Kong University of Science and Technology (Guangzhou)"},
     {id:2, name:"Beijing Institute of Technology"},
     {id:3, name:"Shanghai Jiao Tong University"},
     {id:4, name:"University of Oxford"},
-    {id:5, name:"Nanyang Technological University"},
-    {id:6, name:"Massachusetts Institute of Technology"}
+    {id:5, name:"Nanyang Technological University"}
   ],
   resources: [
     {name:"Paper", symbol:"↗", url:null, detail:"Manuscript", status:"Coming soon"},
