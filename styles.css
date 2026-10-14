@@ -55,9 +55,7 @@ video{transform:translateZ(0);backface-visibility:hidden}
 .bibtex-panel pre{margin:14px 0 0;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--muted)}
 @media(max-width:640px){.citation-reference{font-size:14px;margin-top:18px}.bibtex-panel{padding:15px;margin-top:20px}.bibtex-panel pre{font-size:11px}}
 /* Explicit three-method robot comparison and clear simulation success labels. */
-.hero{padding-top:64px}.project-brand{display:flex;align-items:center;justify-content:center;gap:9px;margin:0 auto 20px;color:var(--accent-dark);font-size:27px;font-weight:750;letter-spacing:1.8px;line-height:1}
-.project-brand img{width:40px;height:40px}.wordmark{gap:7px;letter-spacing:-.6px}.wordmark img{width:27px;height:27px;flex-shrink:0}
-@media(max-width:640px){.hero{padding-top:32px}.project-brand{font-size:22px;gap:7px;margin-bottom:17px}.project-brand img{width:34px;height:34px}}
+.wordmark{gap:7px;letter-spacing:-.6px}.wordmark img{width:27px;height:27px;flex-shrink:0}
 .robot-metric .metric-label{font-size:12px;font-weight:550;color:var(--text);margin:0}
 .method-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
 .method-metrics>div>span{display:block;font-size:11px;color:var(--muted);margin-bottom:7px}
