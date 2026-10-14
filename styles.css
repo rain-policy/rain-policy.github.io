@@ -67,3 +67,5 @@ video{transform:translateZ(0);backface-visibility:hidden}
 .route-tabs{margin-top:26px}.route-tabs+.routing-layout{margin-top:0}
 .route-explanation #route-task-description{font-size:14px}
 @media(max-width:640px){.method-metrics{gap:14px}.method-metrics strong{font-size:24px}.sim-card .sim-success{font-size:11.5px}.route-tabs button{font-size:12px;padding:10px}.route-tabs{margin-top:24px}}
+
+.resource-button img{display:block;width:100%;height:100%;object-fit:contain}

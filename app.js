@@ -8,8 +8,8 @@
   const icon = paths => `<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`;
   const resourceIcons = {
     Paper: icon('<path d="M5 2.5h6l4 4v11H5zM11 2.5v4h4M8 10h4M8 13h4"/>'),
-    arXiv: icon('<path d="m4 3 12 14M13.5 3 6.5 10l-3 7M6.5 10l10-6"/>'),
-    Code: icon('<path d="m6.5 5-5 5 5 5m7-10 5 5-5 5M11.5 3l-3 14"/>'),
+    arXiv: '<img src="assets/icons/arxiv.svg" alt="" width="16" height="16">',
+    Code: '<img src="assets/icons/github.svg" alt="" width="16" height="16">',
     Models: icon('<path d="M10 2.5v10m-3-3 3 3 3-3M3.5 13v4.5h13V13"/>')
   };
   const resourceButton = (r) => r.url
