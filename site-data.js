@@ -1,7 +1,7 @@
 "use strict";
 window.RAIN = {
   title: "Refine Actions If Needed: Adaptive Action Chunk Refinement for Robot Manipulation",
-  citation: {bibtex:null},
+  citation: {bibtex:"@misc{liu2026refineactionsneeded,\n  title={Refine Actions If Needed: Adaptive Action Chunk Refinement for Robot Manipulation},\n  author={Hanlin Liu and Zichen Zhou and Jiacheng Zhang and Liuyuan Na and Jin Jin and Guangyan Chen and Yufeng Yue and Gen Li and Fangqiang Ding},\n  year={2026},\n  eprint={2610.19765},\n  archivePrefix={arXiv},\n  primaryClass={cs.RO},\n  url={https://arxiv.org/abs/2610.19765}\n}"},
   authors: [
     {name:"Hanlin Liu", affiliations:[1,2], equalContribution:true},
     {name:"Zichen Zhou", affiliations:[2], equalContribution:true},
@@ -21,8 +21,8 @@ window.RAIN = {
     {id:5, name:"Nanyang Technological University"}
   ],
   resources: [
-    {name:"Paper", symbol:"↗", url:"assets/paper/RAIN.pdf", detail:"Manuscript PDF · 9 pages", status:"Available"},
-    {name:"arXiv", symbol:"↗", url:null, detail:"Preprint", status:"Awaiting arXiv announcement"},
+    {name:"Paper", symbol:"↗", url:"https://arxiv.org/pdf/2610.19765", detail:"arXiv PDF · 9 pages", status:"Available"},
+    {name:"arXiv", symbol:"↗", url:"https://arxiv.org/abs/2610.19765", detail:"arXiv:2610.19765 · cs.RO", status:"Available"},
     {name:"Code", symbol:"⌘", url:"https://github.com/rain-policy/RAIN", detail:"ManiSkill implementation · MIT", status:"Available"},
     {name:"Models", symbol:"↓", url:"https://github.com/rain-policy/RAIN/releases/tag/v0.1.0", detail:"Eight-task pretrained checkpoints · MIT", status:"Available"}
   ],

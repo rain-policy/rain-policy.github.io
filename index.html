@@ -11,12 +11,24 @@
   <meta property="og:url" content="https://rain-policy.github.io/">
   <meta property="og:image" content="https://rain-policy.github.io/assets/posters/cube_stacking.webp">
   <link rel="canonical" href="https://rain-policy.github.io/">
+  <meta name="citation_title" content="Refine Actions If Needed: Adaptive Action Chunk Refinement for Robot Manipulation">
+  <meta name="citation_author" content="Hanlin Liu">
+  <meta name="citation_author" content="Zichen Zhou">
+  <meta name="citation_author" content="Jiacheng Zhang">
+  <meta name="citation_author" content="Liuyuan Na">
+  <meta name="citation_author" content="Jin Jin">
+  <meta name="citation_author" content="Guangyan Chen">
+  <meta name="citation_author" content="Yufeng Yue">
+  <meta name="citation_author" content="Gen Li">
+  <meta name="citation_author" content="Fangqiang Ding">
+  <meta name="citation_publication_date" content="2026/10/14">
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2610.19765">
   <title>RAIN · Refine Actions If Needed</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg?v=blue">
   <link rel="preload" href="assets/fonts/Inter-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css?v=resource-logos-20261014">
-  <script src="site-data.js?v=public-release-20261014" defer></script>
-  <script src="app.js?v=resource-logos-20261014" defer></script>
+  <script src="site-data.js?v=arxiv-2610.19765" defer></script>
+  <script src="app.js?v=arxiv-2610.19765" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#overview">Skip to content</a>
@@ -100,7 +112,7 @@
 
     <section id="overview-video" class="section-wrap ruled-section" aria-labelledby="video-heading"><div class="section-heading"><h2 id="video-heading">Video Overview</h2><p class="section-lead">Method, manipulation tasks and refinement allocation.</p></div><video class="overview-player" controls playsinline preload="none" data-src="assets/videos/rain-overview.mp4" poster="assets/posters/rain-overview.webp" aria-label="RAIN narrated overview video"></video><p class="small-note">English narration · no background music · playback speeds are indicated within the video.</p></section>
 
-    <section id="resources" class="section-wrap ruled-section resources-section" aria-labelledby="resources-heading"><div class="section-heading"><h2 id="resources-heading">Research Resources</h2><p class="section-lead">Paper, implementation and pretrained models.</p></div><div id="resource-list" class="resource-list"></div><p class="small-note">Code and pretrained models are available under MIT. The arXiv link and <a href="#citation">BibTeX</a> will be added after announcement.</p></section>
+    <section id="resources" class="section-wrap ruled-section resources-section" aria-labelledby="resources-heading"><div class="section-heading"><h2 id="resources-heading">Research Resources</h2><p class="section-lead">Paper, implementation and pretrained models.</p></div><div id="resource-list" class="resource-list"></div><p class="small-note">Code and pretrained models are available under MIT. Read the <a href="https://arxiv.org/abs/2610.19765">arXiv preprint</a> and find its <a href="#citation">BibTeX citation</a> below.</p></section>
 
     <section id="faq" class="section-wrap ruled-section faq-section" aria-labelledby="faq-heading"><div class="section-heading"><h2 id="faq-heading">Questions &amp; Answers</h2></div>
       <details class="detail"><summary>How does RAIN choose the number of refinement steps?</summary><div><p>RAIN predicts the action error and uncertainty for each possible number of steps. It combines these estimates with compute cost and recent refinement choices, then runs the selected number of steps.</p></div></details>
@@ -110,8 +122,16 @@
     <section id="citation" class="section-wrap ruled-section citation-section" aria-labelledby="citation-heading">
       <div class="section-heading"><h2 id="citation-heading">Citation</h2></div>
       <div class="citation-reference"><p id="citation-authors"></p><p><cite id="citation-title"></cite></p></div>
-      <p class="small-note citation-release-note">The arXiv citation will be added after the preprint is announced.</p>
-      <div class="bibtex-panel"><div class="bibtex-heading"><span>BibTeX</span><span id="citation-status">Coming soon</span></div><pre><code id="citation-bibtex">BibTeX will be added after the arXiv announcement.</code></pre></div>
+      <p class="small-note citation-release-note"><a href="https://arxiv.org/abs/2610.19765">arXiv:2610.19765 [cs.RO]</a> · 2026</p>
+      <div class="bibtex-panel"><div class="bibtex-heading"><span>BibTeX</span><span id="citation-status">Available</span></div><pre><code id="citation-bibtex">@misc{liu2026refineactionsneeded,
+  title={Refine Actions If Needed: Adaptive Action Chunk Refinement for Robot Manipulation},
+  author={Hanlin Liu and Zichen Zhou and Jiacheng Zhang and Liuyuan Na and Jin Jin and Guangyan Chen and Yufeng Yue and Gen Li and Fangqiang Ding},
+  year={2026},
+  eprint={2610.19765},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO},
+  url={https://arxiv.org/abs/2610.19765}
+}</code></pre></div>
     </section>
   </main>
   <footer class="site-footer section-wrap"><a class="wordmark" href="#overview"><img src="assets/rain-mark.svg?v=blue" alt="" width="27" height="27"><span>RAIN</span></a><p>Refine Actions If Needed<br><span>Adaptive Action Chunk Refinement for Robot Manipulation</span></p><a href="#overview">Back to top ↑</a></footer>

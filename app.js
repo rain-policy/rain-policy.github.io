@@ -22,7 +22,6 @@
   if (data.citation?.bibtex) {
     $("#citation-bibtex").textContent = data.citation.bibtex;
     $("#citation-status").textContent = "Available";
-    $(".citation-release-note").hidden = true;
   }
   if (data.authors.length) {
     const names = $("#authors"); names.hidden = false;
